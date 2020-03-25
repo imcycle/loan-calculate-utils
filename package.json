@@ -1,0 +1,28 @@
+{
+  "name": "loan-calculate-utils",
+  "version": "0.0.1",
+  "description": "loan calculate utils",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whosmeya/loan-calculate-utils.git"
+  },
+  "keywords": [
+    "loan",
+    "mortgage",
+    "calculate",
+    "utils"
+  ],
+  "author": "whosmeya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whosmeya/loan-calculate-utils/issues"
+  },
+  "homepage": "https://github.com/whosmeya/loan-calculate-utils#readme",
+  "dependencies": {
+    "number-precision": "^1.3.2"
+  }
+}
