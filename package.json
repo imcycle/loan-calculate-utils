@@ -14,10 +14,12 @@
     "loan",
     "mortgage",
     "calculate",
-    "utils"
+    "utils",
+    "npm",
+    "package"
   ],
   "author": "whosmeya",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/whosmeya/loan-calculate-utils/issues"
   },
