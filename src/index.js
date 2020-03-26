@@ -1,4 +1,4 @@
-const { plus, minus, times, divide } = require('number-precision')
+import { plus, minus, times, divide } from 'number-precision';
 
 /**
  * Average Capital Plus Interest（等额本息）
@@ -62,6 +62,6 @@ function calcAverageCapitalPlusInterest({ amount, term, rate }) {
   }
 }
 
-module.exports = {
+export default {
   calcAverageCapitalPlusInterest
 }
