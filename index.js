@@ -1,79 +1,67 @@
-// import { plus, minus, times, divide } from 'number-precision';
 const { plus, minus, times, divide } = require('number-precision')
-termMonths
-function getdetail(loanAmount, termMonths, APR) {
 
-  var termMonths = times(long, 12);
-  var mouthrate = times(divide(APR, 12), 0.01);
+/**
+ * Average Capital Plus Interest（等额本息）
+ * @param {{
+ *  amount: number; // 贷款金额
+ *  term: number;   // 贷款月数
+ *  rate: number;   // 年利率
+ * }} param0 
+ */
+function calcAverageCapitalPlusInterest({ amount, term, rate }) {
+  // 月利率
+  var monthlyRate = times(divide(rate, 12), 0.01);
 
-  // 每月月供  每月月供额 =〔贷款本金×月利率×(1＋月利率)＾还款月数〕÷〔(1＋月利率)＾还款月数-1〕
-  var yuegong = divide(
+  // 每月月供 每月月供额 =〔贷款本金×月利率×(1＋月利率)＾还款月数〕÷〔(1＋月利率)＾还款月数-1〕
+  var monthlyPayment = divide(
     times(
-      loanAmount,
-      mouthrate,
+      amount,
+      monthlyRate,
       Math.pow(
-        plus(1, mouthrate),
-        termMonths
+        plus(1, monthlyRate),
+        term
       ),
     ),
     minus(
       Math.pow(
-        plus(1, mouthrate),
-        termMonths,
+        plus(1, monthlyRate),
+        term,
       ),
       1,
     )
   );
 
   // 还款总额
-  var zonge = times(yuegong, termMonths);
+  var totalPayment = times(monthlyPayment, term);
+
   // 利息总额
-  var zongxi = minus(zonge, loanAmount);
+  var totalInterest = minus(totalPayment, amount);
 
   // 每月还款明细
-  var dataList = [];
-  var total = loanAmount;
-  for (var i = 0; i < termMonths; i++) {
-    var yuexi = times(total, mouthrate);
-    var yuejin = minus(yuegong, yuexi);
-    total = minus(total, yuejin);
-    dataList.push({
+  var list = [];
+  var beginningBalance = amount;
+  for (var i = 0; i < term; i++) {
+    var monthlyInterest = times(beginningBalance, monthlyRate);
+    var monthlyPrincipal = minus(monthlyPayment, monthlyInterest);
+    var endingBalance = minus(beginningBalance, monthlyPrincipal);
+    list.push({
       key: i + 1,
-      yuegong,
-      yuejin,
-      yuexi,
-      yujin: total,
-    })
+      beginningBalance: beginningBalance.toFixed(2),
+      interest: monthlyInterest.toFixed(2),
+      principal: monthlyPrincipal.toFixed(2),
+      endingBalance: endingBalance.toFixed(2),
+    });
+    beginningBalance = endingBalance;
   }
-  dataList.forEach(item => {
-    for (var k in item) {
-      if (k !== 'key') {
-        item[k] = item[k].toFixed(2);
-      };
-    }
-  })
 
   return {
-    yuegong: yuegong.toFixed(2),
-    zonge: zonge.toFixed(2),
-    zongxi: zongxi.toFixed(2),
-    dataList,
+    monthlyPayment: monthlyPayment.toFixed(2),
+    totalPayment: totalPayment.toFixed(2),
+    totalInterest: totalInterest.toFixed(2),
+    list,
   }
 }
 
-
-var a = {
-  loanAmount: loanAmount,
-  interestAmount: '123',
-
+module.exports = {
+  calcAverageCapitalPlusInterest
 }
-
-
-var data = getdetail(100, 10, 5)
-
-console.log(data)
-
-
-// export default {
-//   getdetail
-// }
