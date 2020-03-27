@@ -1,6 +1,6 @@
 {
   "name": "loan-calculate-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "loan calculate utils",
   "main": "src/index.js",
   "scripts": {
