@@ -1,5 +1,5 @@
 # umi打包目录
-# /dist
+/dist
 
 # mjs打包目录
 /src
