@@ -1,2 +1,8 @@
+# umi打包目录
+# /dist
+
+# mjs打包目录
+/src
+
 node_modules
 package-lock.json

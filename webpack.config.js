@@ -1,24 +1,20 @@
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
 
 const config = {
-  entry: './src',
+  mode: process.env.NODE_ENV,
+  entry: './source/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: process.env.NODE_ENV === 'production' ? 'index.min.js' : 'index.js',
+    library: '[name]',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
+      { test: /\.js$/, use: 'babel-loader' }
     ]
   },
-  plugins: [
-    new CopyPlugin([
-      {
-        from: 'src/**/*.d.ts',
-        to: '[name].ts',
-      },
-    ]),
-  ],
+  plugins: [],
 };
 
 module.exports = config;

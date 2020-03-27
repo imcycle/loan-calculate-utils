@@ -5,7 +5,10 @@
   "main": "/src/index.js",
   "types": "types",
   "scripts": {
-    "build": "webpack --mode development",
+    "build:cjs": "babel source --out-dir src",
+    "build:umd": "cross-env NODE_ENV=development webpack",
+    "build:umd:min": "cross-env NODE_ENV=production webpack",
+    "build": "npm run build:cjs && npm run build:umd && npm run build:umd:min",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,13 +30,16 @@
   },
   "homepage": "https://github.com/whosmeya/loan-calculate-utils#readme",
   "dependencies": {
-    "number-precision": "^1.3.2"
+    "number-precision": "^1.3.2",
+    "ramda": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.9.0",
-    "copy-webpack-plugin": "^5.1.1",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
