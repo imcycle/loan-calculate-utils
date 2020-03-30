@@ -12,29 +12,58 @@ npm install loan-calculate-utils --save
 
 ## Usage
 
-Average Capital Plus Interest（等额本息还款 ）
+### Average Capital Plus Interest（等额本息还款）
 
 ```js
 var loanCalclateUtils = require('loan-calculate-utils');
 
 loanCalclateUtils.calcAverageCapitalPlusInterest({
   amount: 1000000,  // 贷款金额
-  term: 360,        // 贷款月数
-  rate: 5.88,       // 贷款年利率
+  term: 360,        // 贷款期数（月数）
+  rate: 4.9,        // 年利率
 })
 
 // returns
 {
-  monthlyPayment: "5918.57",  // 月供
-  totalPayment: "2130686.49", // 月供
-  totalInterest: "1130686.49" // 月供
+  totalPayment: "1910616.19",         // 总还款
+  totalInterest: "910616.19",         // 总利息
   list: [
     {
-      key: 1,                         // 期数
-      beginningBalance: "1000000.00", // 当月还款前本金余额
-      interest: "4900.00",            // 所还利息
-      principal: "1018.57",           // 所还本金
-      endingBalance: "998981.43"      // 当月还款后本金余额
+      period: 1,                      // 第几期
+      monthlyPayment: "5307.27",      // 月供
+      beginningBalance: "1000000.00", // 当月还款前剩余本金
+      interest: "4083.33",            // 月供利息
+      principal: "1223.93",           // 月供本金
+      endingBalance: "998776.07",     // 当月还款后剩余本金
+    },
+    ...
+  ]
+}
+```
+
+### Average Capital（等额本金还款）
+
+```js
+var loanCalclateUtils = require('loan-calculate-utils');
+
+loanCalclateUtils.calcAverageCapital({
+  amount: 1000000,  // 贷款金额
+  term: 360,        // 贷款期数（月数）
+  rate: 4.9,        // 年利率
+})
+
+// returns
+{
+  totalPayment: "1737041.67",         // 总还款
+  totalInterest: "737041.67",         // 总利息
+  list: [
+    {
+      period: 1,                      // 第几期
+      monthlyPayment: "6861.11",      // 月供
+      beginningBalance: "1000000.00", // 当月还款前剩余本金
+      interest: "4083.33",            // 月供利息
+      principal: "2777.78",           // 月供本金
+      endingBalance: "997222.22",     // 当月还款后剩余本金
     },
     ...
   ]
