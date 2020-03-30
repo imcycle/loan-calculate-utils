@@ -62,6 +62,9 @@ function calcAverageCapitalPlusInterest({ amount, term, rate }) {
   }
 }
 
+export {
+  calcAverageCapitalPlusInterest
+}
 export default {
   calcAverageCapitalPlusInterest
 }
