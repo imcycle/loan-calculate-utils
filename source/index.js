@@ -1,13 +1,5 @@
 import { plus, minus, times, divide } from 'number-precision';
 
-/**
- * Average Capital Plus Interest（等额本息）
- * @param {{
- *  amount: number; // 贷款金额
- *  term: number;   // 贷款月数
- *  rate: number;   // 年利率
- * }} param0 
- */
 function calcAverageCapitalPlusInterest({ amount, term, rate }) {
   // 月利率
   var monthlyRate = times(divide(rate, 12), 0.01);
