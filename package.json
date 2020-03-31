@@ -10,7 +10,7 @@
     "build:umd": "cross-env NODE_ENV=development webpack",
     "build:umd:min": "cross-env NODE_ENV=production webpack",
     "build": "npm run build:cjs && npm run build:umd && npm run build:umd:min",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "@babel/preset-env": "^7.9.0",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
+    "jest": "^25.2.4",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
