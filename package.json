@@ -7,9 +7,11 @@
   "types": "types/index.d.ts",
   "scripts": {
     "build:cjs": "babel source --out-dir src",
-    "build:umd": "cross-env NODE_ENV=development webpack",
-    "build:umd:min": "cross-env NODE_ENV=production webpack",
-    "build": "npm run build:cjs && npm run build:umd && npm run build:umd:min",
+    "build:umd": "cross-env NODE_ENV=umd webpack",
+    "build:umd:min": "cross-env NODE_ENV=umd:min webpack",
+    "build:iife": "cross-env NODE_ENV=iife webpack",
+    "build:iife:min": "cross-env NODE_ENV=iife:min webpack",
+    "build": "npm run build:cjs && npm run build:umd && npm run build:umd:min && npm run build:iife && npm run build:iife:min",
     "test": "jest"
   },
   "repository": {
