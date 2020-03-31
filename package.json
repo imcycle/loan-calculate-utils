@@ -12,6 +12,8 @@
     "build:iife": "cross-env NODE_ENV=iife webpack",
     "build:iife:min": "cross-env NODE_ENV=iife:min webpack",
     "build": "npm run build:cjs && npm run build:umd && npm run build:umd:min && npm run build:iife && npm run build:iife:min",
+    "lint": "eslint source/*",
+    "lint:fix": "eslint --fix source/*",
     "test": "jest"
   },
   "repository": {
@@ -40,6 +42,9 @@
     "@babel/preset-env": "^7.9.0",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "jest": "^25.2.4",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"

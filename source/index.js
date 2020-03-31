@@ -5,34 +5,34 @@ import { plus, minus, times, divide } from 'number-precision';
  */
 function calcAverageCapitalPlusInterest({ amount, term, rate }) {
   // 月利率
-  var monthlyRate = times(divide(rate, 12), 0.01);
+  const monthlyRate = times(divide(rate, 12), 0.01);
 
   // 每月月供 每月月供额 =〔贷款本金×月利率×(1＋月利率)＾还款月数〕÷〔(1＋月利率)＾还款月数-1〕
-  var monthlyPayment = divide(
+  const monthlyPayment = divide(
     times(
       amount,
       monthlyRate,
-      Math.pow(plus(1, monthlyRate), term),
+      (plus(1, monthlyRate) ** term),
     ),
     minus(
-      Math.pow(plus(1, monthlyRate), term),
+      (plus(1, monthlyRate) ** term),
       1,
-    )
+    ),
   );
 
   // 还款总额
-  var totalPayment = times(monthlyPayment, term);
+  const totalPayment = times(monthlyPayment, term);
 
   // 还款总利息
-  var totalInterest = minus(totalPayment, amount);
+  const totalInterest = minus(totalPayment, amount);
 
   // 每月还款明细
-  var list = [];
-  var beginningBalance = amount;  // 所剩本金
-  for (var i = 0; i < term; i++) {
-    var monthlyInterest = times(beginningBalance, monthlyRate);
-    var monthlyPrincipal = minus(monthlyPayment, monthlyInterest);
-    var endingBalance = minus(beginningBalance, monthlyPrincipal);
+  const list = [];
+  let beginningBalance = amount; // 所剩本金
+  for (let i = 0; i < term; i++) {
+    const monthlyInterest = times(beginningBalance, monthlyRate);
+    const monthlyPrincipal = minus(monthlyPayment, monthlyInterest);
+    const endingBalance = minus(beginningBalance, monthlyPrincipal);
     list.push({
       period: i + 1,
       monthlyPayment: monthlyPayment.toFixed(2),
@@ -48,7 +48,7 @@ function calcAverageCapitalPlusInterest({ amount, term, rate }) {
     totalPayment: totalPayment.toFixed(2),
     totalInterest: totalInterest.toFixed(2),
     list,
-  }
+  };
 }
 
 /**
@@ -56,24 +56,24 @@ function calcAverageCapitalPlusInterest({ amount, term, rate }) {
  */
 function calcAverageCapital({ amount, term, rate }) {
   // 月利率
-  var monthlyRate = times(divide(rate, 12), 0.01);
+  const monthlyRate = times(divide(rate, 12), 0.01);
 
   // 每月所还本金
-  var monthlyPrincipal = divide(amount, term);
+  const monthlyPrincipal = divide(amount, term);
 
   // 还款总利息
-  var totalInterest = times(plus(term, 1), amount, monthlyRate, 0.5);
+  const totalInterest = times(plus(term, 1), amount, monthlyRate, 0.5);
 
   // 还款总额
-  var totalPayment = plus(totalInterest, amount);
+  const totalPayment = plus(totalInterest, amount);
 
   // 每月还款明细
-  var list = [];
-  var beginningBalance = amount;  // 所剩本金
-  for (var i = 0; i < term; i++) {
-    var monthlyInterest = times(beginningBalance, monthlyRate);
-    var monthlyPayment = plus(monthlyInterest, monthlyPrincipal)
-    var endingBalance = minus(beginningBalance, monthlyPrincipal);
+  const list = [];
+  let beginningBalance = amount; // 所剩本金
+  for (let i = 0; i < term; i++) {
+    const monthlyInterest = times(beginningBalance, monthlyRate);
+    const monthlyPayment = plus(monthlyInterest, monthlyPrincipal);
+    const endingBalance = minus(beginningBalance, monthlyPrincipal);
     list.push({
       period: i + 1,
       monthlyPayment: monthlyPayment.toFixed(2),
@@ -89,14 +89,14 @@ function calcAverageCapital({ amount, term, rate }) {
     totalPayment: totalPayment.toFixed(2),
     totalInterest: totalInterest.toFixed(2),
     list,
-  }
+  };
 }
 
 export {
   calcAverageCapitalPlusInterest,
   calcAverageCapital,
-}
+};
 export default {
   calcAverageCapitalPlusInterest,
   calcAverageCapital,
-}
+};
