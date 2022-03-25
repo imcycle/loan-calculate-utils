@@ -1,7 +1,7 @@
 {
   "name": "loan-calculate-utils",
   "author": "imcycc",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "loan calculate utils",
   "main": "src/index.js",
   "types": "types/index.d.ts",
