@@ -1,4 +1,6 @@
-import { plus, minus, times, divide } from 'number-precision';
+import { plus, minus, times, divide, enableBoundaryChecking } from 'number-precision';
+
+enableBoundaryChecking(false)
 
 /**
  * Average Capital Plus Interest（等额本息）
