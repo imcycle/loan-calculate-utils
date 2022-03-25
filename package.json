@@ -1,7 +1,7 @@
 {
   "name": "loan-calculate-utils",
   "author": "whosmeya",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "loan calculate utils",
   "main": "src/index.js",
   "types": "types/index.d.ts",
